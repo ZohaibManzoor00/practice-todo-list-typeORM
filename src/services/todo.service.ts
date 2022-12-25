@@ -1,8 +1,6 @@
-import { EntityRepository, Repository } from 'typeorm';
-import { CreateTodoDto } from '@/dtos/todos.dto';
 import { TodoEntity } from '@/entities/todos.entity';
-import { HttpException } from '@/exceptions/HttpException';
 import { Todo } from '@/interfaces/todos.interface';
+import { EntityRepository, Repository } from 'typeorm';
 
 @EntityRepository()
 class TodoService extends Repository<TodoEntity> {
@@ -22,14 +20,14 @@ class TodoService extends Repository<TodoEntity> {
   }
 
   public async setTodoToCompletedFromDB(todoData: any): Promise<Todo> {
-    const { id } = todoData
-    await TodoEntity.update(id, { ...todoData, completed: true })
-    return 
-  } 
+    const { id } = todoData;
+    await TodoEntity.update(id, { ...todoData, completed: true });
+    return;
+  }
 
   public async deleteTodoFromDB(todoID): Promise<Todo> {
-    await TodoEntity.delete({ id: todoID })
-    return 
+    await TodoEntity.delete({ id: todoID });
+    return;
   }
 }
 
